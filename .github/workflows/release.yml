@@ -1,0 +1,130 @@
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: linux
+            build-name: Linux
+            artifact-name: pdf-toc-linux
+            artifact-ext: ""
+          - os: windows-latest
+            target: windows
+            build-name: Windows
+            artifact-name: pdf-toc-windows
+            artifact-ext: ".exe"
+          - os: macos-latest
+            target: macos
+            build-name: macOS
+            artifact-name: pdf-toc-macos
+            artifact-ext: ""
+
+    runs-on: ${{ matrix.os }}
+    name: Build for ${{ matrix.build-name }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+          channel: 'stable'
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Install Linux dependencies
+        if: matrix.target == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libx11-dev pkg-config cmake ninja-build libblkid-dev
+
+      - name: Build Linux
+        if: matrix.target == 'linux'
+        run: flutter build linux --release
+
+      - name: Build Windows
+        if: matrix.target == 'windows'
+        run: flutter build windows --release
+
+      - name: Build macOS
+        if: matrix.target == 'macos'
+        run: flutter build macos --release
+
+      - name: Prepare artifacts (Linux)
+        if: matrix.target == 'linux'
+        run: |
+          mkdir -p release_artifacts
+          cp -r build/linux/x64/release/bundle/* release_artifacts/
+
+      - name: Prepare artifacts (Windows)
+        if: matrix.target == 'windows'
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path release_artifacts
+          Copy-Item -Path "build/windows/x64/runner/Release/*" -Destination "release_artifacts/" -Recurse
+
+      - name: Prepare artifacts (macOS)
+        if: matrix.target == 'macos'
+        run: |
+          mkdir -p release_artifacts
+          cp -r build/macos/Build/Products/Release/pdf-toc.app release_artifacts/
+
+      - name: Create archive (Linux)
+        if: matrix.target == 'linux'
+        run: tar -czf ${{ matrix.artifact-name }}.tar.gz -C release_artifacts .
+
+      - name: Create archive (Windows)
+        if: matrix.target == 'windows'
+        shell: pwsh
+        run: |
+          cd release_artifacts
+          Compress-Archive -Path "*" -DestinationPath "../${{ matrix.artifact-name }}.zip"
+          cd ..
+
+      - name: Create archive (macOS)
+        if: matrix.target == 'macos'
+        run: cd release_artifacts && ditto -c -k --sequesterRsrc . ../${{ matrix.artifact-name }}.zip && cd ..
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact-name }}
+          path: ${{ matrix.artifact-name }}.*
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    name: Create Release
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            pdf-toc-linux/*
+            pdf-toc-windows/*
+            pdf-toc-macos/*
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

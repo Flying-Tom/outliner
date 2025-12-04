@@ -1,0 +1,29 @@
+name: pdf_toc
+description: Flutter desktop app that adds PDF bookmarks.
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: '>=3.0.0 <5.0.0'
+  flutter: '>=3.7.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  file_selector: ^1.1.0
+  path: ^1.9.0
+  syncfusion_flutter_pdf: ^31.2.16
+  shared_preferences: ^2.1.1
+  window_size: ^0.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  generate: true
+  uses-material-design: true
