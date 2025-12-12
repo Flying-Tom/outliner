@@ -98,131 +98,11 @@ abstract class AppLocalizations {
     Locale('zh')
   ];
 
-  /// No description provided for @appTitle.
+  /// No description provided for @actualPage.
   ///
   /// In en, this message translates to:
-  /// **'PDF Bookmark Editor'**
-  String get appTitle;
-
-  /// No description provided for @pdfInput.
-  ///
-  /// In en, this message translates to:
-  /// **'Document & Input'**
-  String get pdfInput;
-
-  /// No description provided for @configuration.
-  ///
-  /// In en, this message translates to:
-  /// **'Configuration'**
-  String get configuration;
-
-  /// No description provided for @selectPdf.
-  ///
-  /// In en, this message translates to:
-  /// **'Select PDF'**
-  String get selectPdf;
-
-  /// No description provided for @browsePdf.
-  ///
-  /// In en, this message translates to:
-  /// **'Browse PDF'**
-  String get browsePdf;
-
-  /// No description provided for @pdfFile.
-  ///
-  /// In en, this message translates to:
-  /// **'PDF file'**
-  String get pdfFile;
-
-  /// No description provided for @tocText.
-  ///
-  /// In en, this message translates to:
-  /// **'Table of contents'**
-  String get tocText;
-
-  /// No description provided for @tocHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Paste the directory text here'**
-  String get tocHint;
-
-  /// No description provided for @pageOffset.
-  ///
-  /// In en, this message translates to:
-  /// **'Page offset'**
-  String get pageOffset;
-
-  /// No description provided for @levelPatterns.
-  ///
-  /// In en, this message translates to:
-  /// **'Level Patterns'**
-  String get levelPatterns;
-
-  /// No description provided for @insertBookmarks.
-  ///
-  /// In en, this message translates to:
-  /// **'Insert Bookmarks'**
-  String get insertBookmarks;
-
-  /// No description provided for @previewStatus.
-  ///
-  /// In en, this message translates to:
-  /// **'Preview & Status'**
-  String get previewStatus;
-
-  /// No description provided for @status.
-  ///
-  /// In en, this message translates to:
-  /// **'Status'**
-  String get status;
-
-  /// No description provided for @logs.
-  ///
-  /// In en, this message translates to:
-  /// **'Logs'**
-  String get logs;
-
-  /// No description provided for @previewHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Preview will appear when you paste directory text.'**
-  String get previewHint;
-
-  /// No description provided for @noEntriesParsed.
-  ///
-  /// In en, this message translates to:
-  /// **'No entries parsed — check format or patterns'**
-  String get noEntriesParsed;
-
-  /// No description provided for @logsHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Logs will appear here'**
-  String get logsHint;
-
-  /// No description provided for @choosePdfFirst.
-  ///
-  /// In en, this message translates to:
-  /// **'Choose a PDF file first'**
-  String get choosePdfFirst;
-
-  /// No description provided for @pasteDirectoryText.
-  ///
-  /// In en, this message translates to:
-  /// **'Paste the directory text before running'**
-  String get pasteDirectoryText;
-
-  /// No description provided for @pageOffsetMustBeInt.
-  ///
-  /// In en, this message translates to:
-  /// **'Page offset must be an integer'**
-  String get pageOffsetMustBeInt;
-
-  /// No description provided for @invalidRegex.
-  ///
-  /// In en, this message translates to:
-  /// **'Invalid regex: '**
-  String get invalidRegex;
+  /// **'Actual Page'**
+  String get actualPage;
 
   /// No description provided for @addingBookmarks.
   ///
@@ -230,41 +110,23 @@ abstract class AppLocalizations {
   /// **'Adding bookmarks...'**
   String get addingBookmarks;
 
-  /// No description provided for @finishedWriting.
+  /// No description provided for @browsePdf.
   ///
   /// In en, this message translates to:
-  /// **'Finished writing'**
-  String get finishedWriting;
+  /// **'Browse PDF'**
+  String get browsePdf;
 
-  /// No description provided for @error.
+  /// No description provided for @choosePdfFirst.
   ///
   /// In en, this message translates to:
-  /// **'Error: '**
-  String get error;
+  /// **'Choose a PDF file first'**
+  String get choosePdfFirst;
 
-  /// No description provided for @language.
+  /// No description provided for @configuration.
   ///
   /// In en, this message translates to:
-  /// **'Language'**
-  String get language;
-
-  /// No description provided for @theme.
-  ///
-  /// In en, this message translates to:
-  /// **'Theme'**
-  String get theme;
-
-  /// No description provided for @systemTheme.
-  ///
-  /// In en, this message translates to:
-  /// **'System'**
-  String get systemTheme;
-
-  /// No description provided for @lightTheme.
-  ///
-  /// In en, this message translates to:
-  /// **'Light'**
-  String get lightTheme;
+  /// **'Configuration'**
+  String get configuration;
 
   /// No description provided for @darkTheme.
   ///
@@ -272,41 +134,17 @@ abstract class AppLocalizations {
   /// **'Dark'**
   String get darkTheme;
 
-  /// No description provided for @trimLineWhitespace.
+  /// No description provided for @editor.
   ///
   /// In en, this message translates to:
-  /// **'Trim whitespace'**
-  String get trimLineWhitespace;
+  /// **'Editor'**
+  String get editor;
 
-  /// No description provided for @tocHierarchy.
+  /// No description provided for @error.
   ///
   /// In en, this message translates to:
-  /// **'TOC Hierarchy'**
-  String get tocHierarchy;
-
-  /// No description provided for @unrecognized.
-  ///
-  /// In en, this message translates to:
-  /// **'[UNRECOGNIZED]'**
-  String get unrecognized;
-
-  /// No description provided for @title.
-  ///
-  /// In en, this message translates to:
-  /// **'Title'**
-  String get title;
-
-  /// No description provided for @markedPage.
-  ///
-  /// In en, this message translates to:
-  /// **'Marked Page'**
-  String get markedPage;
-
-  /// No description provided for @actualPage.
-  ///
-  /// In en, this message translates to:
-  /// **'Actual Page'**
-  String get actualPage;
+  /// **'Error: '**
+  String get error;
 
   /// No description provided for @extractOutline.
   ///
@@ -314,17 +152,131 @@ abstract class AppLocalizations {
   /// **'Extract Outline'**
   String get extractOutline;
 
+  /// No description provided for @finishedWriting.
+  ///
+  /// In en, this message translates to:
+  /// **'Finished writing'**
+  String get finishedWriting;
+
+  /// No description provided for @invalidRegex.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid regex: '**
+  String get invalidRegex;
+
+  /// No description provided for @insertBookmarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Insert Bookmarks'**
+  String get insertBookmarks;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// No description provided for @levelPatterns.
+  ///
+  /// In en, this message translates to:
+  /// **'Level Patterns'**
+  String get levelPatterns;
+
+  /// No description provided for @lightTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get lightTheme;
+
+  /// No description provided for @logs.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs'**
+  String get logs;
+
+  /// No description provided for @logsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Logs will appear here'**
+  String get logsHint;
+
+  /// No description provided for @markedPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Marked Page'**
+  String get markedPage;
+
+  /// No description provided for @noEntriesParsed.
+  ///
+  /// In en, this message translates to:
+  /// **'No entries parsed — check format or patterns'**
+  String get noEntriesParsed;
+
+  /// No description provided for @noPdfOutline.
+  ///
+  /// In en, this message translates to:
+  /// **'No outline found in this PDF'**
+  String get noPdfOutline;
+
   /// No description provided for @outlineExtracted.
   ///
   /// In en, this message translates to:
   /// **'Outline extracted successfully'**
   String get outlineExtracted;
 
-  /// No description provided for @resetToDefaults.
+  /// No description provided for @pageOffset.
   ///
   /// In en, this message translates to:
-  /// **'Reset to defaults'**
-  String get resetToDefaults;
+  /// **'Page offset'**
+  String get pageOffset;
+
+  /// No description provided for @pageOffsetHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Offset applied when inserting (default 0).'**
+  String get pageOffsetHint;
+
+  /// No description provided for @pageOffsetMustBeInt.
+  ///
+  /// In en, this message translates to:
+  /// **'Page offset must be an integer'**
+  String get pageOffsetMustBeInt;
+
+  /// No description provided for @pasteDirectoryText.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste the directory text before running'**
+  String get pasteDirectoryText;
+
+  /// No description provided for @pdfFile.
+  ///
+  /// In en, this message translates to:
+  /// **'PDF file'**
+  String get pdfFile;
+
+  /// No description provided for @pdfFileHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Click folder or drag a PDF here.'**
+  String get pdfFileHint;
+
+  /// No description provided for @pdfInput.
+  ///
+  /// In en, this message translates to:
+  /// **'Document & Input'**
+  String get pdfInput;
+
+  /// No description provided for @previewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview will appear when you paste directory text.'**
+  String get previewHint;
+
+  /// No description provided for @previewStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview & Status'**
+  String get previewStatus;
 
   /// No description provided for @resetDefaultsDone.
   ///
@@ -332,11 +284,23 @@ abstract class AppLocalizations {
   /// **'Defaults restored'**
   String get resetDefaultsDone;
 
+  /// No description provided for @resetToDefaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to defaults'**
+  String get resetToDefaults;
+
   /// No description provided for @saveSettings.
   ///
   /// In en, this message translates to:
   /// **'Save'**
   String get saveSettings;
+
+  /// No description provided for @selectPdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Select PDF'**
+  String get selectPdf;
 
   /// No description provided for @settingsSaved.
   ///
@@ -344,11 +308,59 @@ abstract class AppLocalizations {
   /// **'Settings saved'**
   String get settingsSaved;
 
-  /// No description provided for @noPdfOutline.
+  /// No description provided for @status.
   ///
   /// In en, this message translates to:
-  /// **'No outline found in this PDF'**
-  String get noPdfOutline;
+  /// **'Status'**
+  String get status;
+
+  /// No description provided for @systemTheme.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get systemTheme;
+
+  /// No description provided for @theme.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @tocHierarchy.
+  ///
+  /// In en, this message translates to:
+  /// **'TOC Hierarchy'**
+  String get tocHierarchy;
+
+  /// No description provided for @tocHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the table-of-contents text in the following format:\n\n1. First-level title\n1.1. Second-level title\n1.1.1. Third-level title\n\nOptions to trim leading/trailing whitespace per line and the regex used to match heading numbers can be configured in Settings.'**
+  String get tocHint;
+
+  /// No description provided for @tocText.
+  ///
+  /// In en, this message translates to:
+  /// **'Table of contents'**
+  String get tocText;
+
+  /// No description provided for @trimLineWhitespace.
+  ///
+  /// In en, this message translates to:
+  /// **'Trim line whitespace'**
+  String get trimLineWhitespace;
+
+  /// No description provided for @unrecognized.
+  ///
+  /// In en, this message translates to:
+  /// **'[UNRECOGNIZED]'**
+  String get unrecognized;
 }
 
 class _AppLocalizationsDelegate

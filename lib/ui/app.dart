@@ -166,16 +166,40 @@ class _OutlinerAppState extends State<OutlinerApp> {
             ),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: _selectedIndex,
-          onTap: (i) => setState(() => _selectedIndex = i),
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-            BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
-          ],
+        bottomNavigationBar: Builder(
+          builder: (ctx) => SafeArea(
+            minimum: const EdgeInsets.all(12.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(14),
+              child: NavigationBarTheme(
+                data: NavigationBarThemeData(
+                  indicatorColor:
+                      Theme.of(ctx).colorScheme.primary.withOpacity(0.12),
+                  labelTextStyle: MaterialStateProperty.all(
+                    TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                  ),
+                  height: 64,
+                ),
+                child: NavigationBar(
+                  selectedIndex: _selectedIndex,
+                  onDestinationSelected: (i) =>
+                      setState(() => _selectedIndex = i),
+                  destinations: [
+                    NavigationDestination(
+                      icon: Icon(Icons.home_outlined),
+                      selectedIcon: Icon(Icons.home),
+                      label: AppLocalizations.of(ctx)!.editor,
+                    ),
+                    NavigationDestination(
+                      icon: Icon(Icons.settings_outlined),
+                      selectedIcon: Icon(Icons.settings),
+                      label: AppLocalizations.of(ctx)!.configuration,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );

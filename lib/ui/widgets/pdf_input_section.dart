@@ -76,6 +76,7 @@ class _PdfInputSectionState extends State<PdfInputSection> {
               controller: widget.pdfPathController,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.pdfFile,
+                hintText: AppLocalizations.of(context)!.pdfFileHint,
                 border: OutlineInputBorder(
                   borderSide: BorderSide(
                     color: _dragging

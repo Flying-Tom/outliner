@@ -32,6 +32,7 @@ class PreviewStatusPanel extends StatelessWidget {
           controller: offsetController,
           decoration: InputDecoration(
             labelText: AppLocalizations.of(context)!.pageOffset,
+            hintText: AppLocalizations.of(context)!.pageOffsetHint,
             border: const OutlineInputBorder(),
           ),
           keyboardType: TextInputType.number,
