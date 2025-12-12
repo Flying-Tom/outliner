@@ -174,8 +174,8 @@ class _OutlinerAppState extends State<OutlinerApp> {
               child: NavigationBarTheme(
                 data: NavigationBarThemeData(
                   indicatorColor:
-                      Theme.of(ctx).colorScheme.primary.withOpacity(0.12),
-                  labelTextStyle: MaterialStateProperty.all(
+                      Theme.of(ctx).colorScheme.primary.withValues(alpha: 0.12),
+                  labelTextStyle: WidgetStateProperty.all(
                     TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                   ),
                   height: 64,
