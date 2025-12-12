@@ -57,7 +57,9 @@ class _TocEditorPageState extends State<TocEditorPage> {
 
   @override
   void dispose() {
-    for (final c in _controllers) c.dispose();
+    for (final c in _controllers) {
+      c.dispose();
+    }
     super.dispose();
   }
 

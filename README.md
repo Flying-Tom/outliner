@@ -1,6 +1,29 @@
-# outliner
+<div align="center">
+  <img src="macos/Runner/Assets.xcassets/AppIcon.appiconset/AppIcon512x512@2x.png" width="120" alt="Outliner logo" />
 
-基于 Flutter 实现的用于将文本目录写入 PDF 书签的工具
+  <h1>Outliner</h1>
+  <p>
+    <a href="https://github.com/Flying-Tom/outliner/actions/workflows/check.yml">
+      <img src="https://github.com/Flying-Tom/outliner/actions/workflows/check.yml/badge.svg" alt="CI" />
+    </a>
+    <a href="https://github.com/Flying-Tom/outliner/actions/workflows/release.yml">
+      <img src="https://github.com/Flying-Tom/outliner/actions/workflows/release.yml/badge.svg" alt="Release" />
+    </a>
+    <a href="LICENSE">
+      <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License" />
+    </a>
+    <a href="https://flutter.dev">
+      <img src="https://img.shields.io/badge/built%20with-Flutter-02569B.svg?logo=flutter" alt="Built with Flutter" />
+    </a>
+    <a href="https://github.com/Flying-Tom/outliner/stargazers">
+      <img src="https://img.shields.io/github/stars/Flying-Tom/outliner?style=social" alt="GitHub stars" />
+    </a>
+  </p>
+</div>
+
+---
+
+基于 Flutter 实现的用于将文本目录写入 PDF 书签的工具。
 
 ![Screenshot](assets/screenshot.png)
 
