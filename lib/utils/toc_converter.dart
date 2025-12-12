@@ -1,4 +1,4 @@
-import 'package:pdf_toc/models/toc_entry.dart';
+import 'package:outliner/models/toc_entry.dart';
 
 class TocConverter {
   static const List<String> defaultLevelExpressions = [

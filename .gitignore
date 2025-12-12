@@ -108,7 +108,7 @@ app.*.symbols
 /dev/**/flutter.docs.zip
 
 # Project-specific local files
-pdf-toc.iml
+outliner.iml
 
 # Exceptions (keep if you need to check in specific defaults)
 !**/ios/**/default.mode1v3

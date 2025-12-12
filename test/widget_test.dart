@@ -8,15 +8,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:pdf_toc/ui/app.dart';
+import 'package:outliner/ui/app.dart';
 
 void main() {
   testWidgets('PDF TOC App launches', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const PdfTOCApp());
+    await tester.pumpWidget(const OutlinerApp());
 
     // Verify that the app loaded and contains expected elements
-    expect(find.text('PDF-TOC'), findsWidgets);
+    expect(find.text('outliner'), findsWidgets);
     expect(find.byType(TextField), findsWidgets);
   });
 }

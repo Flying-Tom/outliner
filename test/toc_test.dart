@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:pdf_toc/utils/toc_converter.dart';
+import 'package:outliner/utils/toc_converter.dart';
 
 void main() {
   final samples = [

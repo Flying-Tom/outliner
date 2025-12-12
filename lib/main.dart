@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
-import 'package:pdf_toc/ui/app.dart';
+import 'package:outliner/ui/app.dart';
 import 'package:window_size/window_size.dart' as window_size;
 
 // Configure desktop window size before runApp on supported platforms.
@@ -21,5 +21,5 @@ Future<void> main() async {
     }
   }
 
-  runApp(const PdfTOCApp());
+  runApp(const OutlinerApp());
 }

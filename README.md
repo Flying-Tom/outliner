@@ -1,4 +1,4 @@
-# pdf-toc
+# outliner
 
 基于 Flutter 实现的用于将文本目录写入 PDF 书签的工具
 

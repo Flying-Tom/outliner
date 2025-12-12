@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pdf_toc/models/toc_entry.dart';
-import 'package:pdf_toc/generated/l10n/app_localizations.dart';
+import 'package:outliner/models/toc_entry.dart';
+import 'package:outliner/generated/l10n/app_localizations.dart';
 
 class TocPreviewItem extends StatelessWidget {
   final TocEntry entry;

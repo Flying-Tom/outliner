@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdf_toc/generated/l10n/app_localizations.dart';
+import 'package:outliner/generated/l10n/app_localizations.dart';
 import 'level_fields_widget.dart';
 
 class ConfigPanel extends StatelessWidget {

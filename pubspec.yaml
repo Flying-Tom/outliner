@@ -1,4 +1,4 @@
-name: pdf_toc
+name: outliner
 description: Flutter desktop app that adds PDF bookmarks.
 publish_to: none
 version: 0.1.0
@@ -18,6 +18,7 @@ dependencies:
   syncfusion_flutter_pdf: ^31.2.16
   shared_preferences: ^2.1.1
   window_size: ^0.1.0
+  desktop_drop: ^0.4.0
 
 dev_dependencies:
   flutter_test:

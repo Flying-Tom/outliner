@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pdf_toc/generated/l10n/app_localizations.dart';
+import 'package:outliner/generated/l10n/app_localizations.dart';
+import 'package:desktop_drop/desktop_drop.dart';
+import 'dart:async';
 
-class PdfInputSection extends StatelessWidget {
+class PdfInputSection extends StatefulWidget {
   final TextEditingController pdfPathController;
   final TextEditingController tocController;
   final VoidCallback onPickPdf;
@@ -14,6 +16,15 @@ class PdfInputSection extends StatelessWidget {
     required this.onPickPdf,
     this.onExtractOutline,
   });
+
+  @override
+  State<PdfInputSection> createState() => _PdfInputSectionState();
+}
+
+class _PdfInputSectionState extends State<PdfInputSection> {
+  bool _dragging = false;
+  String? _dropError;
+  Timer? _errorTimer;
 
   @override
   Widget build(BuildContext context) {
@@ -30,22 +41,70 @@ class PdfInputSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          TextField(
-            controller: pdfPathController,
-            decoration: InputDecoration(
-              labelText: AppLocalizations.of(context)!.pdfFile,
-              border: const OutlineInputBorder(),
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.folder_open),
-                onPressed: onPickPdf,
-                tooltip: AppLocalizations.of(context)!.browsePdf,
+          DropTarget(
+            onDragEntered: (detail) => setState(() => _dragging = true),
+            onDragExited: (detail) => setState(() => _dragging = false),
+            onDragDone: (detail) {
+              setState(() => _dragging = false);
+              if (detail.files.isNotEmpty) {
+                final file = detail.files.first;
+                final path = file.path;
+                if (path.isNotEmpty && path.toLowerCase().endsWith('.pdf')) {
+                  widget.pdfPathController.text = path;
+                  setState(() => _dropError = null);
+                } else {
+                  final msg =
+                      '${AppLocalizations.of(context)!.error} Not a PDF file';
+                  setState(() => _dropError = msg);
+                  _errorTimer?.cancel();
+                  _errorTimer = Timer(const Duration(seconds: 4), () {
+                    if (mounted) setState(() => _dropError = null);
+                  });
+                  try {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(msg)),
+                    );
+                  } catch (_) {}
+                }
+              }
+            },
+            child: TextField(
+              controller: widget.pdfPathController,
+              decoration: InputDecoration(
+                labelText: AppLocalizations.of(context)!.pdfFile,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: _dragging
+                        ? Theme.of(context).colorScheme.primary
+                        : Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: _dragging
+                        ? Theme.of(context).colorScheme.primary
+                        : Colors.grey,
+                  ),
+                ),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.folder_open),
+                  onPressed: widget.onPickPdf,
+                  tooltip: AppLocalizations.of(context)!.browsePdf,
+                ),
               ),
+              readOnly: true,
             ),
-            readOnly: true,
           ),
+          if (_dropError != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              _dropError!,
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ],
           const SizedBox(height: 8),
           ElevatedButton.icon(
-            onPressed: onExtractOutline,
+            onPressed: widget.onExtractOutline,
             icon: const Icon(Icons.auto_awesome),
             label: Text(AppLocalizations.of(context)!.extractOutline),
           ),
@@ -55,7 +114,7 @@ class PdfInputSection extends StatelessWidget {
               maxLines: null,
               expands: true,
               textAlignVertical: TextAlignVertical.top,
-              controller: tocController,
+              controller: widget.tocController,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.tocText,
                 hintText: AppLocalizations.of(context)!.tocHint,

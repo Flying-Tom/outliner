@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pdf_toc/generated/l10n/app_localizations.dart';
+import 'package:outliner/generated/l10n/app_localizations.dart';
 
 /// Theme selector menu widget
 /// Encapsulates the theme selection logic and UI

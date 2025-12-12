@@ -4,10 +4,10 @@ import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 
-import 'package:pdf_toc/utils/toc_converter.dart';
-import 'package:pdf_toc/services/pdf_service.dart';
-import 'package:pdf_toc/models/toc_entry.dart';
-import 'package:pdf_toc/generated/l10n/app_localizations.dart';
+import 'package:outliner/utils/toc_converter.dart';
+import 'package:outliner/services/pdf_service.dart';
+import 'package:outliner/models/toc_entry.dart';
+import 'package:outliner/generated/l10n/app_localizations.dart';
 import 'widgets/pdf_input_section.dart';
 import 'widgets/preview_status_panel.dart';
 import 'widgets/config_panel.dart';
@@ -15,13 +15,13 @@ import 'widgets/app_bar_title.dart';
 import 'widgets/language_selector.dart';
 import 'widgets/theme_selector_menu.dart';
 
-class PdfTocHome extends StatefulWidget {
+class AppHome extends StatefulWidget {
   final ThemeMode initialThemeMode;
   final ValueChanged<ThemeMode> onThemeChanged;
   final Locale? initialLocale;
   final ValueChanged<Locale?> onLocaleChanged;
 
-  const PdfTocHome({
+  const AppHome({
     super.key,
     this.initialThemeMode = ThemeMode.system,
     required this.onThemeChanged,
@@ -30,10 +30,10 @@ class PdfTocHome extends StatefulWidget {
   });
 
   @override
-  State<PdfTocHome> createState() => _PdfTocHomeState();
+  State<AppHome> createState() => _AppHomeState();
 }
 
-class _PdfTocHomeState extends State<PdfTocHome> {
+class _AppHomeState extends State<AppHome> {
   final _pdfPathController = TextEditingController();
   final _tocController = TextEditingController();
   final _offsetController = TextEditingController(text: '0');

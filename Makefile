@@ -1,7 +1,7 @@
 .PHONY: help clean get run run-macos test format analyze doctor build-macos build-windows build-linux
 
 help:
-	@echo "pdf-toc - Makefile commands"
+	@echo "outliner - Makefile commands"
 	@echo ""
 	@echo "Development:"
 	@echo "  make get           - Fetch dependencies (flutter pub get)"

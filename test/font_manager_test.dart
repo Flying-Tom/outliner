@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:pdf_toc/utils/font_manager.dart';
+import 'package:outliner/utils/font_manager.dart';
 
 void main() {
   group('FontManager Tests', () {

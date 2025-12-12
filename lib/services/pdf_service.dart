@@ -3,7 +3,7 @@ import 'package:path/path.dart' as p;
 
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
-import 'package:pdf_toc/models/toc_entry.dart';
+import 'package:outliner/models/toc_entry.dart';
 
 class PdfService {
   /// Add bookmarks (outline) to an existing PDF file using a list of

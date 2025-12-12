@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Beautiful app bar title widget for pdf-toc
+/// Beautiful app bar title widget for Outliner
 /// Displays the app name with an icon and refined styling
 class AppBarTitle extends StatelessWidget {
   const AppBarTitle({super.key});
@@ -31,7 +31,7 @@ class AppBarTitle extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'PDF-TOC',
+              'Outliner',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     letterSpacing: 0.5,
