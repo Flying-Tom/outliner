@@ -8,6 +8,7 @@ class PdfInputSection extends StatefulWidget {
   final TextEditingController tocController;
   final VoidCallback onPickPdf;
   final VoidCallback? onExtractOutline;
+  final TextEditingController? offsetController;
 
   const PdfInputSection({
     super.key,
@@ -15,6 +16,7 @@ class PdfInputSection extends StatefulWidget {
     required this.tocController,
     required this.onPickPdf,
     this.onExtractOutline,
+    this.offsetController,
   });
 
   @override
@@ -33,11 +35,13 @@ class _PdfInputSectionState extends State<PdfInputSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            AppLocalizations.of(context)!.pdfInput,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
+          Center(
+            child: Text(
+              AppLocalizations.of(context)!.pdfInput,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
           const SizedBox(height: 12),
@@ -102,12 +106,6 @@ class _PdfInputSectionState extends State<PdfInputSection> {
               style: TextStyle(color: Theme.of(context).colorScheme.error),
             ),
           ],
-          const SizedBox(height: 8),
-          ElevatedButton.icon(
-            onPressed: widget.onExtractOutline,
-            icon: const Icon(Icons.auto_awesome),
-            label: Text(AppLocalizations.of(context)!.extractOutline),
-          ),
           const SizedBox(height: 16),
           Expanded(
             child: TextField(
@@ -117,10 +115,23 @@ class _PdfInputSectionState extends State<PdfInputSection> {
               controller: widget.tocController,
               decoration: InputDecoration(
                 labelText: AppLocalizations.of(context)!.tocText,
-                hintText: AppLocalizations.of(context)!.tocHint,
+                hintText: (widget.offsetController == null ||
+                        widget.offsetController!.text.trim().isEmpty)
+                    ? AppLocalizations.of(context)!.tocHint
+                    : '${AppLocalizations.of(context)!.tocHint} (${AppLocalizations.of(context)!.pageOffset}: ${widget.offsetController!.text})',
                 border: const OutlineInputBorder(),
                 alignLabelWithHint: true,
               ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            height: 48,
+            width: double.infinity,
+            child: ElevatedButton.icon(
+              onPressed: widget.onExtractOutline,
+              icon: const Icon(Icons.auto_awesome),
+              label: Text(AppLocalizations.of(context)!.extractOutline),
             ),
           ),
         ],

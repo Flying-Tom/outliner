@@ -107,7 +107,7 @@ abstract class AppLocalizations {
   /// No description provided for @pdfInput.
   ///
   /// In en, this message translates to:
-  /// **'PDF & Input'**
+  /// **'Document & Input'**
   String get pdfInput;
 
   /// No description provided for @configuration.
@@ -319,6 +319,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Outline extracted successfully'**
   String get outlineExtracted;
+
+  /// No description provided for @resetToDefaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to defaults'**
+  String get resetToDefaults;
+
+  /// No description provided for @resetDefaultsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Defaults restored'**
+  String get resetDefaultsDone;
+
+  /// No description provided for @saveSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get saveSettings;
+
+  /// No description provided for @settingsSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings saved'**
+  String get settingsSaved;
 
   /// No description provided for @noPdfOutline.
   ///

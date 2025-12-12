@@ -12,7 +12,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appTitle => 'PDF Bookmark Editor';
 
   @override
-  String get pdfInput => 'PDF & Input';
+  String get pdfInput => 'Document & Input';
 
   @override
   String get configuration => 'Configuration';
@@ -119,6 +119,18 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get outlineExtracted => 'Outline extracted successfully';
+
+  @override
+  String get resetToDefaults => 'Reset to defaults';
+
+  @override
+  String get resetDefaultsDone => 'Defaults restored';
+
+  @override
+  String get saveSettings => 'Save';
+
+  @override
+  String get settingsSaved => 'Settings saved';
 
   @override
   String get noPdfOutline => 'No outline found in this PDF';

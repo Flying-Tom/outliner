@@ -17,7 +17,7 @@ class LevelFieldsWidget extends StatelessWidget {
           child: TextField(
             controller: controllers[index],
             decoration: InputDecoration(
-              labelText: 'Level $index regex',
+              labelText: 'Level ${index + 1} pattern',
               border: const OutlineInputBorder(),
               isDense: true,
               contentPadding:

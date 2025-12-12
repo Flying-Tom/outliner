@@ -10,23 +10,17 @@ import 'package:outliner/models/toc_entry.dart';
 import 'package:outliner/generated/l10n/app_localizations.dart';
 import 'widgets/pdf_input_section.dart';
 import 'widgets/preview_status_panel.dart';
-import 'widgets/config_panel.dart';
-import 'widgets/app_bar_title.dart';
-import 'widgets/language_selector.dart';
-import 'widgets/theme_selector_menu.dart';
 
 class AppHome extends StatefulWidget {
-  final ThemeMode initialThemeMode;
-  final ValueChanged<ThemeMode> onThemeChanged;
-  final Locale? initialLocale;
-  final ValueChanged<Locale?> onLocaleChanged;
+  final List<TextEditingController> levelControllers;
+  final bool trimLines;
+  final ValueChanged<bool> onTrimLinesChanged;
 
   const AppHome({
     super.key,
-    this.initialThemeMode = ThemeMode.system,
-    required this.onThemeChanged,
-    this.initialLocale,
-    required this.onLocaleChanged,
+    required this.levelControllers,
+    required this.trimLines,
+    required this.onTrimLinesChanged,
   });
 
   @override
@@ -36,12 +30,10 @@ class AppHome extends StatefulWidget {
 class _AppHomeState extends State<AppHome> {
   final _pdfPathController = TextEditingController();
   final _tocController = TextEditingController();
-  final _offsetController = TextEditingController(text: '0');
+  final _offsetController = TextEditingController();
   late final List<TextEditingController> _levelControllers;
-  bool _trimLines = true;
+  late bool _trimLines;
 
-  String? _language;
-  late ThemeMode _currentThemeMode;
   List<TocEntry> _previewEntries = [];
   bool _isRunning = false;
   Timer? _previewTimer;
@@ -49,13 +41,8 @@ class _AppHomeState extends State<AppHome> {
   @override
   void initState() {
     super.initState();
-    _currentThemeMode = widget.initialThemeMode;
-    _levelControllers = List.generate(
-      TocConverter.defaultLevelExpressions.length,
-      (index) => TextEditingController(
-        text: TocConverter.defaultLevelExpressions[index],
-      ),
-    );
+    _levelControllers = widget.levelControllers;
+    _trimLines = widget.trimLines;
     _tocController.addListener(_schedulePreviewRefresh);
     for (final controller in _levelControllers) {
       controller.addListener(_schedulePreviewRefresh);
@@ -65,22 +52,12 @@ class _AppHomeState extends State<AppHome> {
   }
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // Initialize language from widget or system locale
-    _language = widget.initialLocale?.languageCode ??
-        Localizations.localeOf(context).languageCode;
-  }
-
-  @override
   void dispose() {
     _previewTimer?.cancel();
     _pdfPathController.dispose();
     _tocController.dispose();
     _offsetController.dispose();
-    for (final controller in _levelControllers) {
-      controller.dispose();
-    }
+    // Note: `_levelControllers` are managed by parent and should not be disposed here.
     super.dispose();
   }
 
@@ -163,7 +140,8 @@ class _AppHomeState extends State<AppHome> {
       return;
     }
 
-    final parsedOffset = int.tryParse(_offsetController.text.trim());
+    final offsetText = _offsetController.text.trim();
+    final parsedOffset = offsetText.isEmpty ? 0 : int.tryParse(offsetText);
     if (parsedOffset == null) {
       _showMessage(AppLocalizations.of(context)!.pageOffsetMustBeInt);
       return;
@@ -219,33 +197,10 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const AppBarTitle(),
-        actions: [
-          LanguageSelectorMenu(
-            currentLanguage: _language,
-            onLanguageChanged: (value) {
-              setState(() {
-                _language = value;
-              });
-              widget.onLocaleChanged(Locale(value));
-            },
-          ),
-          ThemeSelectorMenu(
-            currentThemeMode: _currentThemeMode,
-            onThemeModeChanged: (mode) {
-              setState(() {
-                _currentThemeMode = mode;
-              });
-              widget.onThemeChanged(mode);
-            },
-          ),
-        ],
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               flex: 1,
@@ -254,31 +209,42 @@ class _AppHomeState extends State<AppHome> {
                 tocController: _tocController,
                 onPickPdf: _pickPdf,
                 onExtractOutline: _extractOutlineManually,
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: PreviewStatusPanel(
-                  entries: _previewEntries,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: ConfigPanel(
                 offsetController: _offsetController,
-                trimLines: _trimLines,
-                levelControllers: _levelControllers,
-                onTrimLinesChanged: (value) {
-                  setState(() {
-                    _trimLines = value;
-                    _schedulePreviewRefresh();
-                  });
-                },
-                onRunConversion: _runConversion,
-                isRunning: _isRunning,
+              ),
+            ),
+            const SizedBox(width: 12),
+            // Right column: preview (with offset inside), insert button
+            Expanded(
+              flex: 1,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: PreviewStatusPanel(
+                        entries: _previewEntries,
+                        offsetController: _offsetController,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: 48,
+                    child: ElevatedButton.icon(
+                      onPressed: _isRunning ? null : _runConversion,
+                      icon: _isRunning
+                          ? const SizedBox(
+                              width: 16,
+                              height: 16,
+                              child: CircularProgressIndicator(strokeWidth: 2),
+                            )
+                          : const Icon(Icons.play_arrow),
+                      label:
+                          Text(AppLocalizations.of(context)!.insertBookmarks),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

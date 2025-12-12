@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
   "appTitle": "PDF Bookmark Editor",
-  "pdfInput": "PDF & Input",
+  "pdfInput": "Document & Input",
   "configuration": "Configuration",
   "selectPdf": "Select PDF",
   "browsePdf": "Browse PDF",
@@ -37,5 +37,9 @@
   "actualPage": "Actual Page",
   "extractOutline": "Extract Outline",
   "outlineExtracted": "Outline extracted successfully",
+  "resetToDefaults": "Reset to defaults",
+  "resetDefaultsDone": "Defaults restored",
+  "saveSettings": "Save",
+  "settingsSaved": "Settings saved",
   "noPdfOutline": "No outline found in this PDF"
 }

@@ -1,7 +1,7 @@
 {
   "@@locale": "zh",
   "appTitle": "PDF 书签编辑器",
-  "pdfInput": "PDF 与输入",
+  "pdfInput": "文档与输入",
   "configuration": "配置",
   "selectPdf": "选择 PDF",
   "browsePdf": "浏览 PDF",
@@ -37,5 +37,9 @@
   "actualPage": "实际页数",
   "extractOutline": "提取目录",
   "outlineExtracted": "目录提取成功",
+  "resetToDefaults": "恢复默认",
+  "resetDefaultsDone": "已恢复默认",
+  "saveSettings": "保存",
+  "settingsSaved": "设置已保存",
   "noPdfOutline": "该 PDF 中未找到目录"
 }

@@ -12,7 +12,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appTitle => 'PDF 书签编辑器';
 
   @override
-  String get pdfInput => 'PDF 与输入';
+  String get pdfInput => '文档与输入';
 
   @override
   String get configuration => '配置';
@@ -118,6 +118,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get outlineExtracted => '目录提取成功';
+
+  @override
+  String get resetToDefaults => '恢复默认';
+
+  @override
+  String get resetDefaultsDone => '已恢复默认';
+
+  @override
+  String get saveSettings => '保存';
+
+  @override
+  String get settingsSaved => '设置已保存';
 
   @override
   String get noPdfOutline => '该 PDF 中未找到目录';

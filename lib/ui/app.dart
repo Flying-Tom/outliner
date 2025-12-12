@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:outliner/generated/l10n/app_localizations.dart';
 import 'package:outliner/ui/home_page.dart';
+import 'package:outliner/ui/settings_page.dart';
+import 'package:outliner/utils/toc_converter.dart';
 import 'package:outliner/utils/font_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +16,9 @@ class OutlinerApp extends StatefulWidget {
 class _OutlinerAppState extends State<OutlinerApp> {
   ThemeMode _themeMode = ThemeMode.system;
   Locale? _locale;
+  List<TextEditingController> _levelControllers = [];
+  bool _trimLines = true;
+  int _selectedIndex = 0;
 
   static const _prefsKey = 'themeMode';
   static const _localePrefsKey = 'locale';
@@ -23,6 +28,15 @@ class _OutlinerAppState extends State<OutlinerApp> {
     super.initState();
     _loadThemeMode();
     _loadLocale();
+    _initLevelControllers();
+  }
+
+  void _initLevelControllers() {
+    _levelControllers = List.generate(
+      TocConverter.defaultLevelExpressions.length,
+      (index) => TextEditingController(
+          text: TocConverter.defaultLevelExpressions[index]),
+    );
   }
 
   Future<void> _loadThemeMode() async {
@@ -81,6 +95,14 @@ class _OutlinerAppState extends State<OutlinerApp> {
   }
 
   @override
+  void dispose() {
+    for (final c in _levelControllers) {
+      c.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     // 创建统一的文本主题，支持中文
     final textTheme = FontManager.createTextTheme(
@@ -115,11 +137,46 @@ class _OutlinerAppState extends State<OutlinerApp> {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: _themeMode,
-      home: AppHome(
-        initialThemeMode: _themeMode,
-        onThemeChanged: _updateThemeMode,
-        initialLocale: _locale,
-        onLocaleChanged: _updateLocale,
+      home: Scaffold(
+        body: IndexedStack(
+          index: _selectedIndex,
+          children: [
+            AppHome(
+              levelControllers: _levelControllers,
+              trimLines: _trimLines,
+              onTrimLinesChanged: (v) {
+                setState(() {
+                  _trimLines = v;
+                });
+              },
+            ),
+            SettingsPage(
+              levelControllers: _levelControllers,
+              trimLines: _trimLines,
+              onTrimLinesChanged: (v) {
+                setState(() {
+                  _trimLines = v;
+                });
+              },
+              currentThemeMode: _themeMode,
+              onThemeModeChanged: (m) => _updateThemeMode(m),
+              currentLanguage: _locale?.languageCode,
+              onLanguageChanged: (lang) =>
+                  _updateLocale(lang == 'system' ? null : Locale(lang)),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: _selectedIndex,
+          onTap: (i) => setState(() => _selectedIndex = i),
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+            BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
+          ],
+        ),
       ),
     );
   }

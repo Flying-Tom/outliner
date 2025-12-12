@@ -5,10 +5,12 @@ import 'preview_panel.dart';
 
 class PreviewStatusPanel extends StatelessWidget {
   final List<TocEntry> entries;
+  final TextEditingController offsetController;
 
   const PreviewStatusPanel({
     super.key,
     required this.entries,
+    required this.offsetController,
   });
 
   @override
@@ -16,12 +18,23 @@ class PreviewStatusPanel extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          AppLocalizations.of(context)!.previewStatus,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
+        Center(
+          child: Text(
+            AppLocalizations.of(context)!.previewStatus,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
           ),
+        ),
+        const SizedBox(height: 12),
+        TextField(
+          controller: offsetController,
+          decoration: InputDecoration(
+            labelText: AppLocalizations.of(context)!.pageOffset,
+            border: const OutlineInputBorder(),
+          ),
+          keyboardType: TextInputType.number,
         ),
         const SizedBox(height: 12),
         Expanded(
